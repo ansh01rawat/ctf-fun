@@ -273,7 +273,7 @@
 /* -------------------------------------------------------------
    LEGACY FOOTER
    Pre-2022 page footer bar; superseded by .portal-footer.
-   Kept here because archival course-catalogue pages still embed it.
+   Kept here because archival C0zCoe70rgursy-catalogue pages still embed it.
    ------------------------------------------------------------- */
 .legacy-footer {
   background: #1a2a4a;
@@ -312,7 +312,7 @@
                 (was: Google Fonts 'Open Sans'). Falls back to Arial.
                 (Dev: r.hargreaves)
 
-   2021-09-14 — Freeze notice issued by ITS Architecture Board.
+   2021-09-14 — Freeze notice issued by Architecture Board.
                 No new selectors to be added after this date.
                 Existing bugs may be patched on a case-by-case basis.
                 (Signed: arch-board@aegisuniversity.ac.uk)
@@ -323,8 +323,7 @@
 
    2023-11-18 — Investigated request to deprecate .legacy-table styles.
                 Decision deferred — transcript export module still active.
-                Ticket: ITS-7812 (open). Archive reference: C0z70rgy
-
+                Ticket: ITS-7812 (open). Archive reference: ITS
    ------------------------------------------------------------- */
 
 
