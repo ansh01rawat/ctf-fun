@@ -1,0 +1,19 @@
+# Aegis University Portal - Web Crawler Directives
+# Student & Faculty Portal Robots Exclusion Protocol
+
+User-agent: *
+Allow: /
+Allow: /style.css
+Allow: /legacy.css
+Allow: /script.js
+Allow: /data.js
+
+# Protected academic and administrative paths
+Disallow: /admin/
+Disallow: /internal-grades/
+Disallow: /staff-portal/
+Disallow: /faculty-vault/
+Disallow: /lab-keys/
+Disallow: /transcripts/confidential/
+
+Sitemap: https://portal.aegis.edu/sitemap.xml

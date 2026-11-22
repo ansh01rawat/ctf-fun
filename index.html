@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Aegis University — Integrated Student and Laboratory Management Portal" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Aegis University Portal</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>" />
+
+  <!-- Primary stylesheet: main UI components and layout -->
+  <link rel="stylesheet" href="./style.css" />
+
+  <!-- Legacy stylesheet: retained for older module compatibility (Dept. Systems v2.1) -->
+  <link rel="stylesheet" href="./legacy.css" />
+</head>
+<body>
+
+  <!-- =========================================================
+       HEADER — University branding, portal title, theme toggle
+       ========================================================= -->
+  <header class="portal-header">
+    <div class="header-inner">
+      <div class="branding">
+        <!-- University shield / crest placeholder -->
+        <div class="crest" aria-label="Aegis University Crest">&#127979;</div>
+        <div class="brand-text">
+          <span class="uni-name">Aegis University</span>
+          <span class="portal-label">Student &amp; Lab Portal</span>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <!-- Logged-in user display — populated by script.js on load -->
+        <span class="user-badge" id="userBadge">Student</span>
+
+        <!-- Light/Dark mode toggle button -->
+        <button
+          class="theme-toggle"
+          id="themeToggle"
+          title="Toggle light/dark mode"
+          aria-label="Toggle theme"
+        >
+          <span id="themeIcon">&#9728;&#65039;</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       TAB NAVIGATION — Five main portal sections
+       ========================================================= -->
+  <nav class="tab-nav" role="tablist" aria-label="Portal navigation">
+    <button
+      class="tab-btn active"
+      data-tab="dashboard"
+      role="tab"
+      aria-selected="true"
+      aria-controls="tab-dashboard"
+    >
+      Dashboard
+    </button>
+    <button
+      class="tab-btn"
+      data-tab="registry"
+      role="tab"
+      aria-selected="false"
+      aria-controls="tab-registry"
+    >
+      Course Registry
+    </button>
+    <button
+      class="tab-btn"
+      data-tab="lab"
+      role="tab"
+      aria-selected="false"
+      aria-controls="tab-lab"
+    >
+      Lab Booking
+    </button>
+    <button
+      class="tab-btn"
+      data-tab="diagnostics"
+      role="tab"
+      aria-selected="false"
+      aria-controls="tab-diagnostics"
+    >
+      System Diagnostics
+    </button>
+    <button
+      class="tab-btn"
+      data-tab="admin"
+      role="tab"
+      aria-selected="false"
+      aria-controls="tab-admin"
+    >
+      Admin Gate
+    </button>
+  </nav>
+
+  <!-- =========================================================
+       MAIN CONTENT AREA — Tab panels
+       ========================================================= -->
+  <main class="portal-main">
+
+    <!-- -------------------------------------------------------
+         TAB 1: DASHBOARD
+         Overview statistics, welcome banner, notice board
+         ------------------------------------------------------- -->
+    <section
+      class="tab-panel active"
+      id="tab-dashboard"
+      role="tabpanel"
+      aria-labelledby="tab-btn-dashboard"
+    >
+      <!-- Welcome hero banner -->
+      <div class="hero-banner">
+        <div class="hero-content">
+          <h1 class="hero-title">Welcome to the Aegis University Portal</h1>
+          <p class="hero-sub">
+            Autumn Semester 2026 &mdash; Academic Year Integration System v3.4
+          </p>
+          <p class="hero-desc">
+            Manage your courses, reserve laboratory slots, and access departmental
+            resources all in one place. Contact your department coordinator for
+            access issues.
+          </p>
+        </div>
+        <div class="hero-badge">AU</div>
+      </div>
+
+      <!-- Stat cards row — four key portal metrics -->
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-icon">&#127891;</div>
+          <div class="stat-body">
+            <div class="stat-value" id="statEnrolled">4,217</div>
+            <div class="stat-label">Enrolled Students</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">&#128300;</div>
+          <div class="stat-body">
+            <div class="stat-value" id="statLabs">38</div>
+            <div class="stat-label">Active Labs</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">&#128200;</div>
+          <div class="stat-body">
+            <div class="stat-value" id="statGpa">3.41</div>
+            <div class="stat-label">Average GPA (All Depts.)</div>
+          </div>
+        </div>
+        <div class="stat-card highlight">
+          <div class="stat-icon">&#9203;</div>
+          <div class="stat-body">
+            <div class="stat-value" id="statPending">12</div>
+            <div class="stat-label">Pending Approvals</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notice board card -->
+      <div class="card notice-board">
+        <div class="card-header">
+          <h2 class="card-title">&#128276; Notice Board</h2>
+          <span class="card-badge">3 new</span>
+        </div>
+        <ul class="notice-list">
+          <li class="notice-item notice-urgent">
+            <span class="notice-date">22 Nov 2026</span>
+            <span class="notice-text">
+              Autumn semester final exam timetable published — check the Academic
+              Calendar section.
+            </span>
+          </li>
+          <li class="notice-item">
+            <span class="notice-date">19 Nov 2026</span>
+            <span class="notice-text">
+              Maintenance window scheduled for Computation Labs C-14 and C-15 on
+              25 Nov 2026, 06:00–10:00 UTC. Bookings suspended during this period.
+            </span>
+          </li>
+          <li class="notice-item">
+            <span class="notice-date">14 Nov 2026</span>
+            <span class="notice-text">
+              New elective offering: Advanced Cryptographic Systems (CRYPT-402).
+              Registration opens 1 Dec 2026 via the Course Registry tab.
+            </span>
+          </li>
+          <li class="notice-item">
+            <span class="notice-date">08 Nov 2026</span>
+            <span class="notice-text">
+              Reminder: Annual University Research Symposium — 10 Dec 2026,
+              Meridian Hall. All students encouraged to attend.
+            </span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- -------------------------------------------------------
+         TAB 2: COURSE REGISTRY
+         Searchable live table rendered from data.js records.
+         Only 4 columns are displayed; internal fields stay hidden.
+         ------------------------------------------------------- -->
+    <section
+      class="tab-panel"
+      id="tab-registry"
+      role="tabpanel"
+      aria-labelledby="tab-btn-registry"
+      hidden
+    >
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">&#128218; Course Registry</h2>
+          <span class="card-meta">Autumn 2026 &mdash; Enrolment Records</span>
+        </div>
+
+        <!-- Live search input — filters by student name or course -->
+        <div class="search-row">
+          <label for="registrySearch" class="sr-only">Search students or courses</label>
+          <input
+            type="search"
+            id="registrySearch"
+            class="search-input"
+            placeholder="Search by name or course..."
+            aria-label="Filter students by name or course"
+          />
+          <span class="search-hint" id="searchHint">Showing all records</span>
+        </div>
+
+        <!-- Table wrapper for horizontal scroll on small screens -->
+        <div class="table-wrapper">
+          <table class="data-table" id="registryTable" aria-label="Course enrolment records">
+            <thead>
+              <tr>
+                <th scope="col">Student ID</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Course</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <!-- tbody populated by script.js using records from data.js -->
+            <tbody id="registryBody">
+            </tbody>
+          </table>
+        </div>
+        <p class="table-footer" id="registryCount">Loading records…</p>
+      </div>
+    </section>
+
+    <!-- -------------------------------------------------------
+         TAB 3: LAB BOOKING
+         Static mock booking log — timestamps, lab, reserver, status
+         ------------------------------------------------------- -->
+    <section
+      class="tab-panel"
+      id="tab-lab"
+      role="tabpanel"
+      aria-labelledby="tab-btn-lab"
+      hidden
+    >
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">&#128300; Lab Booking Log</h2>
+          <span class="card-meta">Current booking period: 18 Nov – 30 Nov 2026</span>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="data-table" aria-label="Laboratory booking records">
+            <thead>
+              <tr>
+                <th scope="col">Booking ID</th>
+                <th scope="col">Timestamp</th>
+                <th scope="col">Laboratory</th>
+                <th scope="col">Reserved By</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Static booking rows — representative sample from the scheduling system -->
+              <tr>
+                <td>BK-20261118-001</td>
+                <td>2026-11-18 08:00</td>
+                <td>Computation Lab C-11</td>
+                <td>Dr. M. Okonkwo</td>
+                <td><span class="badge badge-active">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>BK-20261119-004</td>
+                <td>2026-11-19 10:30</td>
+                <td>Networks Lab N-03</td>
+                <td>T. Vasquez (Postgrad)</td>
+                <td><span class="badge badge-active">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>BK-20261120-007</td>
+                <td>2026-11-20 13:00</td>
+                <td>Biomedical Lab B-02</td>
+                <td>Prof. S. Lindqvist</td>
+                <td><span class="badge badge-pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td>BK-20261121-012</td>
+                <td>2026-11-21 09:00</td>
+                <td>Robotics Lab R-01</td>
+                <td>K. Nair (Undergrad Team)</td>
+                <td><span class="badge badge-active">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>BK-20261122-015</td>
+                <td>2026-11-22 14:00</td>
+                <td>Computation Lab C-14</td>
+                <td>A. Petrov</td>
+                <td><span class="badge badge-cancelled">Cancelled</span></td>
+              </tr>
+              <tr>
+                <td>BK-20261123-018</td>
+                <td>2026-11-23 11:00</td>
+                <td>Materials Lab M-07</td>
+                <td>Dr. F. Beaumont</td>
+                <td><span class="badge badge-pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td>BK-20261124-021</td>
+                <td>2026-11-24 16:00</td>
+                <td>Networks Lab N-05</td>
+                <td>C. Oduya (Undergrad)</td>
+                <td><span class="badge badge-active">Confirmed</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- -------------------------------------------------------
+         TAB 4: SYSTEM DIAGNOSTICS
+         Run Diagnostics button writes to sessionStorage and
+         renders a fake system health panel.
+         ------------------------------------------------------- -->
+    <section
+      class="tab-panel"
+      id="tab-diagnostics"
+      role="tabpanel"
+      aria-labelledby="tab-btn-diagnostics"
+      hidden
+    >
+      <div class="card diag-card">
+        <div class="card-header">
+          <h2 class="card-title">&#128187; System Diagnostics</h2>
+          <span class="card-meta">Portal Infrastructure &mdash; Node Health Check</span>
+        </div>
+
+        <p class="diag-intro">
+          Use the diagnostics tool to verify portal node health, check resource
+          utilisation, and confirm connectivity to backend services.
+          Results reflect a point-in-time snapshot of the serving infrastructure.
+        </p>
+
+        <!-- Run button — clicking this triggers the diagnostics routine in script.js -->
+        <button class="btn btn-primary" id="runDiagBtn">
+          &#9654; Run Diagnostics
+        </button>
+
+        <!-- Results panel — hidden until the button is clicked -->
+        <div class="diag-results" id="diagResults" hidden>
+          <h3 class="diag-results-title">Diagnostics Report</h3>
+          <div class="diag-grid">
+            <div class="diag-metric">
+              <span class="diag-label">Memory Usage</span>
+              <div class="diag-bar-wrap">
+                <div class="diag-bar" id="diagMemBar"></div>
+              </div>
+              <span class="diag-value" id="diagMem">—</span>
+            </div>
+            <div class="diag-metric">
+              <span class="diag-label">CPU Load</span>
+              <div class="diag-bar-wrap">
+                <div class="diag-bar diag-bar-cpu" id="diagCpuBar"></div>
+              </div>
+              <span class="diag-value" id="diagCpu">—</span>
+            </div>
+            <div class="diag-metric">
+              <span class="diag-label">System Uptime</span>
+              <span class="diag-value" id="diagUptime">—</span>
+            </div>
+            <div class="diag-metric">
+              <span class="diag-label">Node ID</span>
+              <span class="diag-value mono" id="diagNode">—</span>
+            </div>
+            <div class="diag-metric">
+              <span class="diag-label">DB Connection</span>
+              <span class="diag-value" id="diagDb">—</span>
+            </div>
+            <div class="diag-metric">
+              <span class="diag-label">Auth Service</span>
+              <span class="diag-value" id="diagAuth">—</span>
+            </div>
+          </div>
+          <p class="diag-timestamp" id="diagTimestamp"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- -------------------------------------------------------
+         TAB 5: ADMIN GATE
+         Clearance verification panel. Checks the global isAdmin
+         flag before injecting authorized content.
+         ------------------------------------------------------- -->
+    <section
+      class="tab-panel"
+      id="tab-admin"
+      role="tabpanel"
+      aria-labelledby="tab-btn-admin"
+      hidden
+    >
+      <div class="card admin-card">
+        <div class="card-header">
+          <h2 class="card-title">&#128274; Admin Clearance Gate</h2>
+          <span class="card-meta">Restricted — Authorised Personnel Only</span>
+        </div>
+
+        <!-- Default "unauthenticated" view -->
+        <div class="admin-lock-view" id="adminLockView">
+          <div class="lock-icon" aria-hidden="true">&#128274;</div>
+          <p class="lock-message">
+            This section is restricted to staff with active administrative clearance.
+            If you believe you should have access, contact the IT Helpdesk or your
+            departmental administrator.
+          </p>
+          <button class="btn btn-secondary" id="verifyClearanceBtn">
+            Verify Clearance
+          </button>
+          <!-- Error message shown on failed verification -->
+          <p class="admin-error" id="adminError" hidden></p>
+        </div>
+
+        <!-- Admin content panel — injected dynamically by script.js upon clearance -->
+        <div id="adminPanelContainer"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+  <footer class="portal-footer">
+    <span>Aegis University &copy; 2026 &mdash; Information Technology Services</span>
+    <span class="footer-sep">&bull;</span>
+    <span>Portal v3.4.1</span>
+    <span class="footer-sep">&bull;</span>
+    <a href="./sitemap.xml" class="footer-link">Sitemap</a>
+      <!-- Br0Imm4B0unc3 -->
+  </footer>
+
+  <!-- Data module must load before script.js so studentRecords is available -->
+  <script src="./data.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>
