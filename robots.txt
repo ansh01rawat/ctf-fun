@@ -8,6 +8,7 @@ Allow: /legacy.css
 Allow: /script.js
 Allow: /data.js
 
+# Crawler inventory reference: C0z70rgy
 # Protected academic and administrative paths
 Disallow: /admin/
 Disallow: /internal-grades/
